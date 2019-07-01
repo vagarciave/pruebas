@@ -31,30 +31,30 @@
 #' @examples
 #'
 #' ## The probability density function
-#' curve(dKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5), from=0, to=2,
+#' curve(dMOLE(x, mu=3, sigma=0.8, nu=2.0), from=0, to=2,
 #'       ylim=c(0, 2.5), col="red", las=1, ylab="f(x)")
 #'
 #' ## The cumulative distribution and the Reliability function
 #' par(mfrow=c(1, 2))
-#' curve(pKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5),
+#' curve(pMOLE(x, mu=3, sigma=0.8, nu=2.0),
 #'       from=0, to=2,  col="red", las=1, ylab="F(x)")
-#' curve(pKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5, lower.tail=FALSE),
+#' curve(pMOLE(x, mu=3, sigma=0.8, nu=2.0, lower.tail=FALSE),
 #'       from=0, to=2, col="red", las=1, ylab="S(x)")
 #'
 #' ## The quantile function
 #' p <- seq(from=0, to=0.99999, length.out=100)
-#' plot(x=qKW(p, mu=3, sigma=0.8, nu=2.0, tau=1.5), y=p, xlab="Quantile",
+#' plot(x=qMOLE(p, mu=3, sigma=0.8, nu=2.0), y=p, xlab="Quantile",
 #'      las=1, ylab="Probability")
-#' curve(pKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5), from=0, add=TRUE, col="red")
+#' curve(pMOLE(x, mu=3, sigma=0.8, nu=2.0), from=0, add=TRUE, col="red")
 #'
 #' ## The random function
-#' hist(rKW(n=10000, mu=3, sigma=0.8, nu=2.0, tau=1.5), freq=FALSE,
+#' hist(rMOLE(n=10000, mu=3, sigma=0.8, nu=2.0), freq=FALSE,
 #'      xlab="x", las=1, main="")
-#' curve(dKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5), from=0, add=TRUE, col="red")
+#' curve(dMOLEx, mu=3, sigma=0.8, nu=2.0), from=0, add=TRUE, col="red")
 #'
 #' ## The Hazard function
 #' par(mfrow=c(1,1))
-#' curve(hKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5), from=0, to=2, ylim=c(0, 7),
+#' curve(hMOLE(x, mu=3, sigma=0.8, nu=2.0), from=0, to=2,
 #'       col="red", ylab="Hazard function", las=1)
 #'
 #' @export
@@ -66,7 +66,7 @@ dMOLE <- function(x, mu, sigma, nu, log=FALSE){
   if (any(nu <= 0))
     stop(paste("nu must be positive", "\n", ""))
 
-  loglik <- (-mu-1)*log((n*u*mu*sigma)*exp(nu*x)*(exp(nu*x)-1))
+  loglik <- (-mu-1)*log((nu*mu*sigma)*exp(nu*x)*(exp(nu*x)-1))
   -2*log(1 + sigma*(exp(nu*x)-1)^-mu)
 
   if (log == FALSE)
