@@ -49,37 +49,41 @@ with parameters \code{mu}, \code{sigma}, and \code{nu} .
 The Marshall-Olkin logistic-exponential Distribution with parameters \code{mu},
 \code{sigma}, and \code{nu} has density given by
 
-\eqn{f(x)=\ [\mu \sigma \nu \exp^{\nu x}[\exp^{\nu x}-1]^{-\mu-1}x^{\sigma - 1}/ [1 + \sigma [\exp^{\nu x}-1]]^2}
+\eqn{f(x)=\ [\mu \sigma \nu \exp^{\nu x}[\exp^{\nu x}-1]^{-\mu-1}/ [1 + \sigma [\exp^{\nu x}-1]^-\mu]^2}
 
 for x > 0
 }
 \examples{
 
 ## The probability density function
-curve(dMOLE(x, mu=3, sigma=0.8, nu=2.0), from=0, to=2,
-      ylim=c(0, 2.5), col="red", las=1, ylab="f(x)")
+par(mfrow=c(1, 2))
+ curve(dMOLE(x, mu=0.6, sigma=5.5, nu=1), from=0, to=8,
+ ylim=c(0, 0.3), col="red", las=1, ylab="f(x)")
+
+ curve(dMOLE(x, mu=3, sigma=15, nu=1.2), from=0, to=3,
+ ylim=c(0, 1.5), col="red", las=1, ylab="f(x)")
 
 ## The cumulative distribution and the Reliability function
 par(mfrow=c(1, 2))
-curve(pMOLE(x, mu=3, sigma=0.8, nu=2.0),
-      from=0, to=2,  col="red", las=1, ylab="F(x)")
-curve(pMOLE(x, mu=3, sigma=0.8, nu=2.0, lower.tail=FALSE),
-      from=0, to=2, col="red", las=1, ylab="S(x)")
+curve(pMOLE(x, mu=0.6, sigma=5.5, nu=1),
+      from=0, to=8,  col="red", las=1, ylab="F(x)")
+curve(pMOLE(x, mu=0.6, sigma=5.5, nu=1, lower.tail=FALSE),
+      from=0, to=8, col="red", las=1, ylab="S(x)")
 
 ## The quantile function
 p <- seq(from=0, to=0.99999, length.out=100)
-plot(x=qMOLE(p, mu=3, sigma=0.8, nu=2.0), y=p, xlab="Quantile",
+plot(x=qMOLE(p, mu=0.6, sigma=5.5, nu=1), y=p, xlab="Quantile",
      las=1, ylab="Probability")
-curve(pMOLE(x, mu=3, sigma=0.8, nu=2.0), from=0, add=TRUE, col="red")
+curve(pMOLE(x, mu=0.6, sigma=5.5, nu=1), from=0, add=TRUE, col="red")
 
 ## The random function
-hist(rMOLE(n=10000, mu=3, sigma=0.8, nu=2.0), freq=FALSE,
+hist(rMOLE(n=10000, mu=0.6, sigma=5.5, nu=1), freq=FALSE,
      xlab="x", las=1, main="")
-curve(dMOLE(x, mu=3, sigma=0.8, nu=2.0), from=0, add=TRUE, col="red")
+curve(dMOLE(x,  mu=0.6, sigma=5.5, nu=1), from=0, add=TRUE, col="red")
 
 ## The Hazard function
 par(mfrow=c(1,1))
-curve(hMOLE(x, mu=3, sigma=0.8, nu=2.0), from=0, to=2,
+curve(hMOLE(x,  mu=0.6, sigma=5.5, nu=1), from=0, to=8,
       col="red", ylab="Hazard function", las=1)
 
 }
