@@ -49,7 +49,7 @@ with parameters \code{mu}, \code{sigma}, and \code{nu} .
 The Marshall-Olkin logistic-exponential Distribution with parameters \code{mu},
 \code{sigma}, and \code{nu} has density given by
 
-\eqn{f(x)=\ [\mu \sigma \nu \exp^{\nu x}[\exp^{\nu x}-1]^{-\mu-1}/ [1 + \sigma [\exp^{\nu x}-1]^-\mu]^2}
+\eqn{f(x)=\ \mu \sigma \nu \exp^{\nu x}[\exp^{\nu x}-1]^{-\mu-1}/ [1 + \sigma [\exp^{\nu x}-1]^{-\mu}]^2}
 
 for x > 0
 }

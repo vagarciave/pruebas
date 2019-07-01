@@ -41,9 +41,9 @@
 #' ## The cumulative distribution and the Reliability function
 #' par(mfrow=c(1, 2))
 #' curve(pMOLE(x, mu=0.6, sigma=5.5, nu=1),
-#'       from=0, to=8,  col="red", las=1, ylab="F(x)")
+#'       from=0, to=15,  col="red", las=1, ylab="F(x)")
 #' curve(pMOLE(x, mu=0.6, sigma=5.5, nu=1, lower.tail=FALSE),
-#'       from=0, to=8, col="red", las=1, ylab="S(x)")
+#'       from=0, to=15, col="red", las=1, ylab="S(x)")
 #'
 #' ## The quantile function
 #' p <- seq(from=0, to=0.99999, length.out=100)
