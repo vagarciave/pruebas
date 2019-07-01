@@ -79,7 +79,7 @@ dMOLE <- function(x, mu, sigma, nu, log=FALSE){
 }
 #' @export
 #' @rdname dMOLE
-pMOLE <- function(q, mu, sigma, nu, tau,
+pMOLE <- function(q, mu, sigma, nu,
                   lower.tail=TRUE, log.p=FALSE){
   if (any(q < 0))
     stop(paste("q must be positive", "\n", ""))
@@ -100,7 +100,7 @@ pMOLE <- function(q, mu, sigma, nu, tau,
 }
 #' @export
 #' @rdname dMOLE
-qMOLE <- function(p, mu, sigma, nu, tau,
+qMOLE <- function(p, mu, sigma, nu,
                   lower.tail=TRUE, log.p=FALSE){
   if (any(mu <= 0 ))
     stop(paste("mu must be positive", "\n", ""))
@@ -122,7 +122,7 @@ qMOLE <- function(p, mu, sigma, nu, tau,
 #' @importFrom stats runif
 #' @export
 #' @rdname dMOLE
-rMOLE <- function(n, mu, sigma, nu, tau){
+rMOLE <- function(n, mu, sigma, nu){
   if(any(n <= 0))
     stop(paste("n must be positive","\n",""))
   if (any(mu <= 0 ))
@@ -139,7 +139,7 @@ rMOLE <- function(n, mu, sigma, nu, tau){
 }
 #' @export
 #' @rdname dMOLE
-hMOLE <- function(x, mu, sigma, nu, tau){
+hMOLE <- function(x, mu, sigma, nu){
   if (any(x < 0))
     stop(paste("x must be positive", "\n", ""))
   if (any(mu <= 0 ))

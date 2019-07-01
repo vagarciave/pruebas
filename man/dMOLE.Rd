@@ -10,13 +10,13 @@
 \usage{
 dMOLE(x, mu, sigma, nu, log = FALSE)
 
-pMOLE(q, mu, sigma, nu, tau, lower.tail = TRUE, log.p = FALSE)
+pMOLE(q, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE)
 
-qMOLE(p, mu, sigma, nu, tau, lower.tail = TRUE, log.p = FALSE)
+qMOLE(p, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE)
 
-rMOLE(n, mu, sigma, nu, tau)
+rMOLE(n, mu, sigma, nu)
 
-hMOLE(x, mu, sigma, nu, tau)
+hMOLE(x, mu, sigma, nu)
 }
 \arguments{
 \item{x, q}{vector of quantiles.}
@@ -49,7 +49,7 @@ with parameters \code{mu}, \code{sigma}, and \code{nu} .
 The Marshall-Olkin logistic-exponential Distribution with parameters \code{mu},
 \code{sigma}, and \code{nu} has density given by
 
-\eqn{f(x)=\ \mu \sigma \nu \exp^{\nu x}[\exp^{\nu x}-1]^{-\mu-1}/ [1 + \sigma [\exp^{\nu x}-1]^{-\mu}]^2}
+\eqn{f(x)=\ \mu \sigma \nu \exp^{\nu x}[\exp^{\nu x}-1]^{-\mu-1} / [1 + \sigma [\exp^{\nu x}-1]^{-\mu}]^2}
 
 for x > 0
 }
