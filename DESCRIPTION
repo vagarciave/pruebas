@@ -1,0 +1,11 @@
+Package: pruebas
+Type: Package
+Title: pruebas
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: Valentina Garcia <vagarciave@unal.edu.com>
+Description: Paquete para probar funciones
+License: --
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
