@@ -75,7 +75,7 @@ curve(pMOLE(x, mu=3, sigma=0.8, nu=2.0), from=0, add=TRUE, col="red")
 ## The random function
 hist(rMOLE(n=10000, mu=3, sigma=0.8, nu=2.0), freq=FALSE,
      xlab="x", las=1, main="")
-curve(dMOLEx, mu=3, sigma=0.8, nu=2.0), from=0, add=TRUE, col="red")
+curve(dMOLE(x, mu=3, sigma=0.8, nu=2.0), from=0, add=TRUE, col="red")
 
 ## The Hazard function
 par(mfrow=c(1,1))
