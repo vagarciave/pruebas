@@ -20,6 +20,7 @@
 #'
 #' \eqn{f(x)=\ [\mu \sigma \nu \exp^{\nu x}[\exp^{\nu x}-1]^{-\mu-1}x^{\sigma - 1}/ [1 + \sigma [\exp^{\nu x}-1]]^2}
 #'
+#' for x > 0
 #'
 #'
 #' @return
@@ -28,7 +29,7 @@
 #' generates random deviates and \code{hMOLE} gives the hazard function.
 #'
 #' @examples
-#' NOT RUN {
+#'
 #' ## The probability density function
 #' curve(dKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5), from=0, to=2,
 #'       ylim=c(0, 2.5), col="red", las=1, ylab="f(x)")
@@ -55,7 +56,7 @@
 #' par(mfrow=c(1,1))
 #' curve(hKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5), from=0, to=2, ylim=c(0, 7),
 #'       col="red", ylab="Hazard function", las=1)
-#'}
+#'
 #' @export
 dMOLE <- function(x, mu, sigma, nu, log=FALSE){
   if (any(mu <= 0 ))
@@ -65,9 +66,8 @@ dMOLE <- function(x, mu, sigma, nu, log=FALSE){
   if (any(nu <= 0))
     stop(paste("nu must be positive", "\n", ""))
 
-  term <- -mu * (x^sigma)
-  loglik <- log(nu*tau*mu*sigma) + (sigma-1)*log(x) + term +
-    (nu-1)*log(1-exp(term)) + (tau-1)*log(1-(1-exp(term))^nu)
+  loglik <- (-mu-1)*log((n*u*mu*sigma)*exp(nu*x)*(exp(nu*x)-1))
+  -2*log(1 + sigma*(exp(nu*x)-1)^-mu)
 
   if (log == FALSE)
     density <- exp(loglik)
@@ -114,7 +114,7 @@ qMOLE <- function(p, mu, sigma, nu, tau,
   if (any(p < 0) | any(p > 1))
     stop(paste("p must be between 0 and 1", "\n", ""))
 
-  q <- ((-1/mu)*(log(1-(1-(1-p)^(1/tau))^(1/nu))))^(1/sigma)
+  q <- nu^-1 * (log((1 + ((sigma*p)/(1-p)))^(1/mu)))
   q
 }
 #' @importFrom stats runif
@@ -129,12 +129,10 @@ rMOLE <- function(n, mu, sigma, nu, tau){
     stop(paste("sigma must be positive", "\n", ""))
   if (any(nu <= 0))
     stop(paste("nu must be positive", "\n", ""))
-  if (any(tau <= 0))
-    stop(paste("tau must be positive", "\n", ""))
 
   n <- ceiling(n)
   p <- runif(n)
-  r <- qKW(p, mu, sigma, nu, tau)
+  r <- qMOLE(p, mu, sigma, nu)
   r
 }
 #' @export
@@ -149,7 +147,6 @@ hMOLE <- function(x, mu, sigma, nu, tau){
   if (any(nu <= 0))
     stop(paste("nu must be positive", "\n", ""))
 
-  h <- dKW(x, mu, sigma, nu, tau, log=FALSE) /
-    pKW(x, mu, sigma, nu, tau, lower.tail=FALSE, log.p=FALSE)
+  h <- mu*nu*exp(nu*x) / ((exp(nu*x)-1)*(1 + sigma*(exp(nu*x)-1)^-mu))
   h
 }

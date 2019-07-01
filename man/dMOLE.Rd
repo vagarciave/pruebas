@@ -50,9 +50,11 @@ The Marshall-Olkin logistic-exponential Distribution with parameters \code{mu},
 \code{sigma}, and \code{nu} has density given by
 
 \eqn{f(x)=\ [\mu \sigma \nu \exp^{\nu x}[\exp^{\nu x}-1]^{-\mu-1}x^{\sigma - 1}/ [1 + \sigma [\exp^{\nu x}-1]]^2}
+
+for x > 0
 }
 \examples{
-NOT RUN {
+
 ## The probability density function
 curve(dKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5), from=0, to=2,
       ylim=c(0, 2.5), col="red", las=1, ylab="f(x)")
@@ -79,5 +81,5 @@ curve(dKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5), from=0, add=TRUE, col="red")
 par(mfrow=c(1,1))
 curve(hKW(x, mu=3, sigma=0.8, nu=2.0, tau=1.5), from=0, to=2, ylim=c(0, 7),
       col="red", ylab="Hazard function", las=1)
-}
+
 }
